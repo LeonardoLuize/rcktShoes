@@ -67,8 +67,13 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
   }: UpdateProductAmount) => {
     try {
       // TODO
-    } catch {
+      const productStock = await api.get('/stock/' + productId).then(res => res.data);
+      amount = productStock.amount;
+
+      return amount;
+    } catch(err) {
       // TODO
+      console.log(err);
     }
   };
 
